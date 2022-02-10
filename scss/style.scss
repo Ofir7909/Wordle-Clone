@@ -1,8 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap");
+
+$background-color: #121213;
+$primary-color: #3a3a3c;
+$accent-color: #818384;
+$text-color: #d7dadc;
+
+$present-color: #b59f3b;
+$correct-place: #538d4e;
+
 * {
   margin: 0;
   padding: 0;
 }
 
+html,
 body {
-  background-color: #111;
+  font-family: "Open Sans";
+  background-color: $background-color;
+  height: 100%;
+}
+
+#container {
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header {
+  border-bottom: 1px solid $primary-color;
+}
+
+.title {
+  color: $text-color;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.1rem;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  padding: 10px;
+}
+
+.square {
+  color: $text-color;
+  text-transform: uppercase;
+  box-sizing: border-box;
+
+  min-width: 3.5rem;
+  min-height: 3.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid $primary-color;
+  background-color: transparent;
+  transition: border 300ms ease-in-out, background-color 300ms ease-in-out;
+
+  &[data-state="filled"] {
+    border: 2px solid $accent-color;
+    background-color: transparent;
+  }
+
+  &[data-state="wrong"] {
+    border: none;
+    background-color: $primary-color;
+  }
+
+  &[data-state="present"] {
+    border: none;
+    background-color: $present-color;
+  }
+
+  &[data-state="correct"] {
+    border: none;
+    background-color: $correct-place;
+  }
+}
+
+#keyboard-container {
+  height: 200px;
+  width: 100%;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  margin: 6px auto;
+  touch-action: manipulation;
+
+  button {
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.8rem;
+    border: 0;
+    padding: 0;
+    background-color: $accent-color;
+    color: $text-color;
+    cursor: pointer;
+
+    height: 3.5rem;
+    flex-grow: 1;
+    text-transform: uppercase;
+    margin: 0 3px;
+    border-radius: 4px;
+  }
+
+  button.wide-button {
+    flex-grow: 1.5;
+  }
+
+  .spacer-half {
+    flex-grow: 0.5;
+  }
 }
